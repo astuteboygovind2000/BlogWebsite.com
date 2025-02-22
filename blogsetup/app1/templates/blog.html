@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+{% block m1 %}
+
+    <div class="py-5 bg-light mt-3">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 col-lg-12 col-sm-12">
+            <h3 class="text-dark text-center" >All Blogs</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="site-section bg-white">
+      <div class="container">
+            <div class="row">
+                {% for post in allpost %}
+                  <div class="col-lg-3 col-md-6">
+                        <div class="card" style="width:100%;">
+                          <a href="../{{post.slug}}/">
+                            <img src="{{post.image.url}}" alt="{{post.title}}" class="card-img img-thumbnail rounded">
+                          </a>
+                          <div class="card-body">
+                              <span class="badge bg-secondary mb-2 bg-dark text-light">{{post.category.name}}</span>
+                              <h3 class="card-header text-center"><a href="../{{post.slug}}/">{{post.title | safe}}</a></h3>
+                                <h5 class="card-title text-center">
+                                    <small class="text-muted">- {{post.date | safe}}</small>
+                                </h5>
+                                <p class="card-text">{{post.text | safe | truncatechars:100}}</p>
+                                <a href="../{{post.slug | safe}}/" class="btn btn-primary d-block">Read More</a>
+                          </div>
+                        </div>
+                  </div>
+                {% endfor %}
+            </div>
+      </div>
+    </div>
+    
+{% endblock %}
